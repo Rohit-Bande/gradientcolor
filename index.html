@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorApp</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to right, #a17679, #94c969);
+        }
+
+        #container{
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            /* background-color: yellow; */
+        }
+        
+        .btn{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        #btn1, #btn2{
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+        }
+ 
+        p{
+            margin-bottom: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .colorArea{
+            width: 100%;
+            box-shadow: rgba(239, 247, 97, 0.4) 0 8px 24px;
+            border-left: 3px solid black;
+            padding: 5px;
+            padding-left: 10px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="btn">
+            <button id="btn1">#45nd45</button>
+            <button id="btn2">#asd56g</button>
+        </div>
+        
+        <p id="para">Copy the below given code</p>
+
+        <div class="colorArea">background-image: linear-gradient(to right, #45nd45, #asd56g)</div>
+    </div>
+
+    <script>
+        let btn1 = document.getElementById('btn1');
+        let btn2 = document.getElementById('btn2');
+        let showColor = document.querySelector('.colorArea');
+        let rgb1 = "#fff";
+        let rgb2 = "#000";
+
+        const myHexVal = () => {
+            let hexValue = "0123456789abcdef";
+            let colors = '#';
+            for(let i = 0; i < 6; i++){
+                colors = colors + hexValue[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+        }
+
+        let clickFuc1 = () => {
+            rgb1 = myHexVal();
+            btn1.innerText = rgb1;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            showColor.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        }
+
+        let clickFuc2 = () => {
+            rgb2 = myHexVal();
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            showColor.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        }
+
+        showColor.addEventListener('click', () => {
+            navigator.clipboard.writeText(showColor.innerText)
+        })
+
+        
+
+        btn1.addEventListener('click', clickFuc1);
+        btn2.addEventListener('click', clickFuc2);
+
+
+    </script>
+</body>
+</html>
